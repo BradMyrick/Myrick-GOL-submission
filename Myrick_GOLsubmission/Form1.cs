@@ -32,7 +32,7 @@ namespace Myrick_GOLsubmission
             // Setup the timer
             timer.Interval = 100; // milliseconds
             timer.Tick += Timer_Tick;
-            timer.Enabled = true; // start timer running
+            timer.Enabled = false; // start timer running
         }
 
         // Calculate the next generation of cells
@@ -117,6 +117,38 @@ namespace Myrick_GOLsubmission
                 // Tell Windows you need to repaint
                 graphicsPanel1.Invalidate();
             }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Iterate through the universe in the y, top to bottom
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    universe[x,y] = false;
+                }
+            }
+            // Tell Windows you need to repaint
+            graphicsPanel1.Invalidate();
+        }
+        //play button
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            timer.Enabled = true;
+        }
+
+        //pause button
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            timer.Enabled = false;
+        }
+
+        //move forward 1 generation
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            NextGeneration();
         }
     }
 }
