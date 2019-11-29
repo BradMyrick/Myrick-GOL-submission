@@ -13,11 +13,11 @@ namespace Myrick_GOLsubmission
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[5, 5];
+        bool[,] universe = new bool[20, 20];
 
         // Drawing colors
         Color gridColor = Color.Black;
-        Color cellColor = Color.Gray;
+        Color cellColor = Color.Magenta;
 
         // The Timer class
         Timer timer = new Timer();
@@ -149,6 +149,44 @@ namespace Myrick_GOLsubmission
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             NextGeneration();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //add about and instructions
+        }
+
+        private void newToolStripButton_Click(object sender, EventArgs e)
+        {
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    universe[x, y] = false;
+                }
+            }
+            // Tell Windows you need to repaint
+            graphicsPanel1.Invalidate();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveToolStripButton_Click(object sender, EventArgs e)
+        {
+            /*
+             saveFile();
+             */
+        }
+
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            /*
+             openFile();
+             */
         }
     }
 }
