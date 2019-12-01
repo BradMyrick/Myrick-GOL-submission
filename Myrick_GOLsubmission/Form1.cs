@@ -13,8 +13,8 @@ namespace Myrick_GOLsubmission
     
     public partial class Form1 : Form
     {
-       static int rows = 100;
-       static int cols = 100;
+       static int rows = 75;
+       static int cols = 75;
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
@@ -190,6 +190,7 @@ namespace Myrick_GOLsubmission
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             // Iterate through the universe in the y, top to bottom
             for (int y = 0; y < universe.GetLength(1); y++)
             {
@@ -199,6 +200,7 @@ namespace Myrick_GOLsubmission
                     universe[x,y] = false;
                 }
             }
+            generations = 0;
             // Tell Windows you need to repaint
             graphicsPanel1.Invalidate();
         }
@@ -229,12 +231,14 @@ namespace Myrick_GOLsubmission
         {
             for (int y = 0; y < universe.GetLength(1); y++)
             {
+                
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
                     universe[x, y] = false;
                 }
             }
+            generations = 0;
             // Tell Windows you need to repaint
             graphicsPanel1.Invalidate();
         }
