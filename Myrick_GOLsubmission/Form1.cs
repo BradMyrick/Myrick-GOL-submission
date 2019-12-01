@@ -13,8 +13,8 @@ namespace Myrick_GOLsubmission
     
     public partial class Form1 : Form
     {
-       static int rows = 100;
-       static int cols = 100;
+       static int rows = 30;
+       static int cols = 30;
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
