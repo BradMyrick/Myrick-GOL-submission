@@ -13,12 +13,12 @@ namespace Myrick_GOLsubmission
     
     public partial class Form1 : Form
     {
-       static int rows = 75;
-       static int cols = 75;
+       static int rows = 100;
+       static int cols = 100;
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
-        Color gridColor = Color.Black;
+        Color gridColor = Color.White;
         Color cellColor = Color.Magenta;
 
         // The Timer class
@@ -44,7 +44,6 @@ namespace Myrick_GOLsubmission
             int cellWidth = graphicsPanel1.ClientSize.Width / universe.GetLength(0);
             // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
             int cellHeight = graphicsPanel1.ClientSize.Height / universe.GetLength(1);
-            var myCellColor = cellColor;
             int myRows = rows;
             int myCols = cols;
             int myCellWidth = cellWidth;
@@ -126,9 +125,9 @@ namespace Myrick_GOLsubmission
              */
             // Calculate the width and height of each cell in pixels
             // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
-            int cellWidth = graphicsPanel1.ClientSize.Width / universe.GetLength(0);
+            float cellWidth = 1.0f * graphicsPanel1.ClientSize.Width / universe.GetLength(0);
             // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
-            int cellHeight = graphicsPanel1.ClientSize.Height / universe.GetLength(1);
+            float cellHeight = 1.0f * graphicsPanel1.ClientSize.Height / universe.GetLength(1);
 
             // A Pen for drawing the grid lines (color, width)
             Pen gridPen = new Pen(gridColor, 1);
@@ -137,20 +136,20 @@ namespace Myrick_GOLsubmission
             Brush cellBrush = new SolidBrush(cellColor);
 
             // Iterate through the universe in the y, top to bottom
-            for (int y = 0; y < universe.GetLength(1); y++)
+            for (float y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
-                for (int x = 0; x < universe.GetLength(0); x++)
+                for (float x = 0; x < universe.GetLength(0); x++)
                 {
                     // A rectangle to represent each cell in pixels
-                    Rectangle cellRect = Rectangle.Empty;
+                    RectangleF cellRect = RectangleF.Empty;
                     cellRect.X = x * cellWidth;
                     cellRect.Y = y * cellHeight;
                     cellRect.Width = cellWidth;
                     cellRect.Height = cellHeight;
-
+                   
                     // Fill the cell with a brush if alive
-                    if (universe[x, y] == true)
+                    if (universe[(int)x,(int) y] == true)
                     {
                         e.Graphics.FillRectangle(cellBrush, cellRect);
                     }
@@ -176,12 +175,12 @@ namespace Myrick_GOLsubmission
 
                 // Calculate the cell that was clicked in
                 // CELL X = MOUSE X / CELL WIDTH
-                int x = e.X / cellWidth;
+                float x = e.X / cellWidth;
                 // CELL Y = MOUSE Y / CELL HEIGHT
-                int y = e.Y / cellHeight;
+                float y = e.Y / cellHeight;
 
                 // Toggle the cell's state
-                universe[x, y] = !universe[x, y];
+                universe[(int)x, (int)y] = !universe[(int)x,(int) y];
 
                 // Tell Windows you need to repaint
                 graphicsPanel1.Invalidate();
