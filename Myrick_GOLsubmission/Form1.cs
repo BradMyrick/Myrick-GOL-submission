@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace Myrick_GOLsubmission
 {
+    
     public partial class Form1 : Form
     {
+       static int rows = 100;
+       static int cols = 100;
         // The universe array
-        bool[,] universe = new bool[20, 20];
-
+        bool[,] universe = new bool[rows, cols];
         // Drawing colors
         Color gridColor = Color.Black;
         Color cellColor = Color.Magenta;
@@ -33,11 +35,72 @@ namespace Myrick_GOLsubmission
             timer.Interval = 100; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
+
+        }
+
+        private int CheckStatus(int row, int col)
+        {
+            // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
+            int cellWidth = graphicsPanel1.ClientSize.Width / universe.GetLength(0);
+            // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
+            int cellHeight = graphicsPanel1.ClientSize.Height / universe.GetLength(1);
+            var myCellColor = cellColor;
+            int myRows = rows;
+            int myCols = cols;
+            int myCellWidth = cellWidth;
+            int count = 0;
+
+            if ((row - 1 >= 0 && col - 1 > 0)&&universe[row - 1, col - 1] == true)
+                count++;
+            if ((row - 1 >= 0) && universe[row - 1, col] == true)
+                count++;
+            if ((row - 1 >= 0 && col + 1 < myCols) && universe[row - 1, col + 1] == true)
+                count++;
+            if ((col - 1 >= 0) && universe[row, col - 1] == true)
+                count++;
+            if ((col + 1 < myCols) && universe[row, col + 1] == true)
+                count++;
+            if ((row + 1 < myRows && col - 1 >= 0) && universe[row + 1, col - 1] == true)
+                count++;
+            if ((row + 1 < myRows) && universe[row + 1, col] == true)
+                count++;
+            if ((row + 1 < myRows && col + 1 < myCols) && universe[row + 1, col + 1] == true)
+                count++;
+
+            return count;
         }
 
         // Calculate the next generation of cells
         private void NextGeneration()
         {
+            Form1 temp = new Form1();
+            int myRows = rows;
+            int myCols = cols;
+
+            bool[,] newGrid = new bool[myRows, myCols];
+            for (int r = 0; r < universe.GetLength(0); r++)
+            {
+                for (int c = 0; c < universe.GetLength(1); c++)
+                {
+                    int count = CheckStatus(r, c);
+
+
+                    if (universe[r, c])
+                    {
+                        if (count == 2 || count == 3)
+                            newGrid[r, c] = true;
+                        if (count < 2 || count > 3)
+                            newGrid[r, c] = false;
+                    }
+                    else
+                    {
+                        if (count == 3)
+                            newGrid[r, c] = true;
+                    }
+                }
+            }
+            universe = newGrid;
+            graphicsPanel1.Invalidate();
 
 
             // Increment generation count
@@ -55,6 +118,12 @@ namespace Myrick_GOLsubmission
 
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
+            /*
+             * trying to figure out the conversion from Int to double without using temp variables.
+              public static System.Drawing.Rectangle Convert 
+              (System.Drawing.Rectangle value, System.Drawing.Printing.PrinterUnit fromUnit, System.Drawing.Printing.PrinterUnit toUnit);
+            
+             */
             // Calculate the width and height of each cell in pixels
             // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
             int cellWidth = graphicsPanel1.ClientSize.Width / universe.GetLength(0);
