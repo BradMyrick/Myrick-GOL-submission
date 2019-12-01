@@ -13,8 +13,8 @@ namespace Myrick_GOLsubmission
     
     public partial class Form1 : Form
     {
-       static int rows = 30;
-       static int cols = 30;
+       static int rows = 50;
+       static int cols = 50;
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
@@ -38,18 +38,19 @@ namespace Myrick_GOLsubmission
 
         }
 
-        private int CheckStatus(int row, int col)
+        private float CheckStatus(int row, int col)
         {
+            // converting these to floats greatly reduced the mouse click offset when in fullscreen.
             // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
-            int cellWidth = graphicsPanel1.ClientSize.Width / universe.GetLength(0);
+            float cellWidth = (1.0f * graphicsPanel1.ClientSize.Width) / (1.0f * universe.GetLength(0));
             // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
-            int cellHeight = graphicsPanel1.ClientSize.Height / universe.GetLength(1);
-            int myRows = rows;
-            int myCols = cols;
-            int myCellWidth = cellWidth;
+            float cellHeight =(1.0f *  graphicsPanel1.ClientSize.Height) /(1.0f * universe.GetLength(1));
+            float myRows = rows;
+            float myCols = cols;
+            float myCellWidth = cellWidth;
             int count = 0;
 
-            if ((row - 1 >= 0 && col - 1 > 0)&&universe[row - 1, col - 1] == true)
+            if ((row - 1 >= 0 && col - 1 > 0)&& universe[row - 1, col - 1] == true)
                 count++;
             if ((row - 1 >= 0) && universe[row - 1, col] == true)
                 count++;
@@ -75,26 +76,26 @@ namespace Myrick_GOLsubmission
             Form1 temp = new Form1();
             int myRows = rows;
             int myCols = cols;
-
+            
             bool[,] newGrid = new bool[myRows, myCols];
-            for (int r = 0; r < universe.GetLength(0); r++)
+            for (float r = 0; r < universe.GetLength(0); r++)
             {
-                for (int c = 0; c < universe.GetLength(1); c++)
+                for (float c = 0; c < universe.GetLength(1); c++)
                 {
-                    int count = CheckStatus(r, c);
+                    int count = (int)CheckStatus((int)r,(int)c);
 
 
-                    if (universe[r, c])
+                    if (universe[(int)r, (int)c])
                     {
                         if (count == 2 || count == 3)
-                            newGrid[r, c] = true;
+                            newGrid[(int)r, (int)c] = true;
                         if (count < 2 || count > 3)
-                            newGrid[r, c] = false;
+                            newGrid[(int)r,(int) c] = false;
                     }
                     else
                     {
                         if (count == 3)
-                            newGrid[r, c] = true;
+                            newGrid[(int)r,(int) c] = true;
                     }
                 }
             }
@@ -125,9 +126,9 @@ namespace Myrick_GOLsubmission
              */
             // Calculate the width and height of each cell in pixels
             // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
-            float cellWidth = 1.0f * graphicsPanel1.ClientSize.Width / universe.GetLength(0);
+            float cellWidth = (1.0f * graphicsPanel1.ClientSize.Width) / (1.0f * universe.GetLength(0));
             // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
-            float cellHeight = 1.0f * graphicsPanel1.ClientSize.Height / universe.GetLength(1);
+            float cellHeight = (1.0f * graphicsPanel1.ClientSize.Height) / (1.0f * universe.GetLength(1));
 
             // A Pen for drawing the grid lines (color, width)
             Pen gridPen = new Pen(gridColor, 1);
@@ -136,10 +137,10 @@ namespace Myrick_GOLsubmission
             Brush cellBrush = new SolidBrush(cellColor);
 
             // Iterate through the universe in the y, top to bottom
-            for (float y = 0; y < universe.GetLength(1); y++)
+            for (float y = 0; y <(1.0f * universe.GetLength(1)); y++)
             {
                 // Iterate through the universe in the x, left to right
-                for (float x = 0; x < universe.GetLength(0); x++)
+                for (float x = 0; x < (1.0f * universe.GetLength(1)); x++)
                 {
                     // A rectangle to represent each cell in pixels
                     RectangleF cellRect = RectangleF.Empty;
