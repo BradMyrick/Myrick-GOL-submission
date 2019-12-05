@@ -13,12 +13,12 @@ namespace Myrick_GOLsubmission
     
     public partial class Form1 : Form
     {
-       static int rows = 50;
-       static int cols = 50;
+       static int rows = 100;
+       static int cols = 100;
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
-        Color gridColor = Color.White;
+        Color gridColor = Color.Black;
         Color cellColor = Color.Magenta;
 
         // The Timer class
@@ -40,16 +40,10 @@ namespace Myrick_GOLsubmission
 
         private float CheckStatus(int row, int col)
         {
-            // converting these to floats greatly reduced the mouse click offset when in fullscreen.
-            // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
-            float cellWidth = (1.0f * graphicsPanel1.ClientSize.Width) / (1.0f * universe.GetLength(0));
-            // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
-            float cellHeight =(1.0f *  graphicsPanel1.ClientSize.Height) /(1.0f * universe.GetLength(1));
             float myRows = rows;
             float myCols = cols;
-            float myCellWidth = cellWidth;
             int count = 0;
-
+            //counting neighbors
             if ((row - 1 >= 0 && col - 1 > 0)&& universe[row - 1, col - 1] == true)
                 count++;
             if ((row - 1 >= 0) && universe[row - 1, col] == true)
@@ -114,16 +108,11 @@ namespace Myrick_GOLsubmission
         private void Timer_Tick(object sender, EventArgs e)
         {
             NextGeneration();
+            graphicsPanel1.Invalidate();
         }
 
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
-            /*
-             * trying to figure out the conversion from Int to double without using temp variables.
-              public static System.Drawing.Rectangle Convert 
-              (System.Drawing.Rectangle value, System.Drawing.Printing.PrinterUnit fromUnit, System.Drawing.Printing.PrinterUnit toUnit);
-            
-             */
             // Calculate the width and height of each cell in pixels
             // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
             float cellWidth = (1.0f * graphicsPanel1.ClientSize.Width) / (1.0f * universe.GetLength(0));
@@ -171,8 +160,8 @@ namespace Myrick_GOLsubmission
             if (e.Button == MouseButtons.Left)
             {
                 // Calculate the width and height of each cell in pixels
-                int cellWidth = graphicsPanel1.ClientSize.Width / universe.GetLength(0);
-                int cellHeight = graphicsPanel1.ClientSize.Height / universe.GetLength(1);
+                float cellWidth = (1.0f * graphicsPanel1.ClientSize.Width) / (1.0f * universe.GetLength(0));
+                float cellHeight = (1.0f * graphicsPanel1.ClientSize.Height) /(1.0f * universe.GetLength(1));
 
                 // Calculate the cell that was clicked in
                 // CELL X = MOUSE X / CELL WIDTH
@@ -239,13 +228,20 @@ namespace Myrick_GOLsubmission
                 }
             }
             generations = 0;
-            // Tell Windows you need to repaint
             graphicsPanel1.Invalidate();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            /*
+            int exit()
+            {
+                
+                 return 0;  no exit on 0 return from forms.
+                
+            }
+            exit();
+            */
         }
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
@@ -261,5 +257,6 @@ namespace Myrick_GOLsubmission
              openFile();
              */
         }
+
     }
 }
