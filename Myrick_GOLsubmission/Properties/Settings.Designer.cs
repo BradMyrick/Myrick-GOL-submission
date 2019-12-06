@@ -37,13 +37,13 @@ namespace Myrick_GOLsubmission.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool GridOn {
+        [global::System.Configuration.DefaultSettingValueAttribute("Fuchsia")]
+        public global::System.Drawing.Color CellColor {
             get {
-                return ((bool)(this["GridOn"]));
+                return ((global::System.Drawing.Color)(this["CellColor"]));
             }
             set {
-                this["GridOn"] = value;
+                this["CellColor"] = value;
             }
         }
     }
