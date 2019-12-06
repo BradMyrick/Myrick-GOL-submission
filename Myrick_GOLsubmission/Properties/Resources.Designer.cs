@@ -63,16 +63,6 @@ namespace Myrick_GOLsubmission.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dealershipHelp {
-            get {
-                object obj = ResourceManager.GetObject("dealershipHelp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Pause_16x_32 {
             get {
                 object obj = ResourceManager.GetObject("Pause_16x_32", resourceCulture);

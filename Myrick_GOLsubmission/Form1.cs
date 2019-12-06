@@ -18,7 +18,7 @@ namespace Myrick_GOLsubmission
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
-        Color gridColor = Color.Black;
+        Color gridColor = Properties.Settings.Default.BackColor;
         Color cellColor = Color.Magenta;
 
         // The Timer class
@@ -27,10 +27,10 @@ namespace Myrick_GOLsubmission
         // Generation count
         int generations = 0;
 
+
         public Form1()
         {
             InitializeComponent();
-
             // Setup the timer
             timer.Interval = 100; // milliseconds
             timer.Tick += Timer_Tick;
@@ -233,15 +233,7 @@ namespace Myrick_GOLsubmission
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            /*
-            int exit()
-            {
-                
-                 return 0;  no exit on 0 return from forms.
-                
-            }
-            exit();
-            */
+            
         }
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
@@ -258,5 +250,38 @@ namespace Myrick_GOLsubmission
              */
         }
 
+        //file -> exit
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog dlg = new ColorDialog();
+                dlg.Color = graphicsPanel1.BackColor;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                graphicsPanel1.BackColor = dlg.Color;
+                gridColor = dlg.Color;
+            }
+        }
+
+        private void showGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          if(showGridToolStripMenuItem.Checked)
+            {
+                gridColor = Color.Black;
+            }
+            else
+            {
+                gridColor = graphicsPanel1.BackColor;
+            }
+        }
     }
 }
