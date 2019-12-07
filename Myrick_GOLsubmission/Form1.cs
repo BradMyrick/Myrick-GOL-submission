@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Myrick_GOLsubmission
 {
-    
+    //Main Form
     public partial class Form1 : Form
     {
        static int rows = 100;
@@ -21,14 +21,11 @@ namespace Myrick_GOLsubmission
         // Drawing colors
         Color gridColor = Properties.Settings.Default.BackColor;
         Color cellColor = Properties.Settings.Default.CellColor;
-
         // The Timer class
         Timer timer = new Timer();
-
-        // Generation count
+        //Generation count
         int generations = 0;
-
-
+        //Form Constructor
         public Form1()
         {
             InitializeComponent();
@@ -38,7 +35,7 @@ namespace Myrick_GOLsubmission
             timer.Enabled = false; // start timer running
 
         }
-
+        //Count Neighbors 
         private float CheckStatus(int row, int col)
         {
             float myRows = rows;
@@ -64,8 +61,7 @@ namespace Myrick_GOLsubmission
 
             return count;
         }
-
-        // Calculate the next generation of cells
+        //Calculate the next generation of cells
         private void NextGeneration()
         {
             Form1 temp = new Form1();
@@ -104,14 +100,13 @@ namespace Myrick_GOLsubmission
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
         }
-
-        // The event called by the timer every Interval milliseconds.
+        //The event called by the timer every Interval milliseconds.
         private void Timer_Tick(object sender, EventArgs e)
         {
             NextGeneration();
             graphicsPanel1.Invalidate();
         }
-
+        //Paint the cells
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
             // Calculate the width and height of each cell in pixels
@@ -154,7 +149,7 @@ namespace Myrick_GOLsubmission
             gridPen.Dispose();
             cellBrush.Dispose();
         }
-
+        //File New
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
         {
             // If the left mouse button was clicked
@@ -177,7 +172,7 @@ namespace Myrick_GOLsubmission
                 graphicsPanel1.Invalidate();
             }
         }
-
+        //Clear the Universe
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
@@ -199,24 +194,23 @@ namespace Myrick_GOLsubmission
         {
             timer.Enabled = true;
         }
-
         //pause button
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
         }
-
         //move forward 1 generation
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             NextGeneration();
         }
-
+        //about information under Help
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //add about and instructions
+            string about = "Welcome to Conway's Game of life.\nRandomize the Univers under the Tools Tab.";
+            MessageBox.Show(about);
         }
-
+        //Clear the universe 
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
             for (int y = 0; y < universe.GetLength(1); y++)
@@ -231,12 +225,7 @@ namespace Myrick_GOLsubmission
             generations = 0;
             graphicsPanel1.Invalidate();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
+        //Save File
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
 
@@ -276,7 +265,7 @@ namespace Myrick_GOLsubmission
                 writer.Close();
             }
         }
-
+        //Open File
         private void openToolStripButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -347,18 +336,12 @@ namespace Myrick_GOLsubmission
             }
 
         }
-
         //file -> exit
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //settings
-        }
-
+        //Change the background color
         private void backgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
@@ -369,19 +352,26 @@ namespace Myrick_GOLsubmission
                 gridColor = dlg.Color;
             }
         }
-
+        //turn grid lines on/off
         private void showGridToolStripMenuItem_Click(object sender, EventArgs e)
         {
           if(showGridToolStripMenuItem.Checked)
             {
-                gridColor = Color.Black;
+                if (graphicsPanel1.BackColor == Color.Black)
+                {
+                    gridColor = Color.White;
+                }
+                else
+                {
+                    gridColor = Color.Black;
+                }
             }
             else
             {
                 gridColor = graphicsPanel1.BackColor;
             }
         }
-
+        //save file
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -419,7 +409,7 @@ namespace Myrick_GOLsubmission
                 writer.Close();
             }
         }
-
+        //open file
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -496,7 +486,7 @@ namespace Myrick_GOLsubmission
             }
 
         }
-
+        //change alive cell color
         private void cellColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
@@ -508,7 +498,7 @@ namespace Myrick_GOLsubmission
                 graphicsPanel1.Invalidate();
             }
         }
-
+        //randomize universe in tool menu
         private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
