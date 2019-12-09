@@ -200,7 +200,7 @@
             // backgroundColorToolStripMenuItem
             // 
             this.backgroundColorToolStripMenuItem.Name = "backgroundColorToolStripMenuItem";
-            this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.backgroundColorToolStripMenuItem.Text = "&Background_Color";
             this.backgroundColorToolStripMenuItem.Click += new System.EventHandler(this.backgroundColorToolStripMenuItem_Click);
             // 
@@ -208,7 +208,7 @@
             // 
             this.showGridToolStripMenuItem.CheckOnClick = true;
             this.showGridToolStripMenuItem.Name = "showGridToolStripMenuItem";
-            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.showGridToolStripMenuItem.Text = "&Show_Grid";
             this.showGridToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.Timer_Tick);
             this.showGridToolStripMenuItem.Click += new System.EventHandler(this.showGridToolStripMenuItem_Click);
@@ -216,7 +216,7 @@
             // cellColorToolStripMenuItem
             // 
             this.cellColorToolStripMenuItem.Name = "cellColorToolStripMenuItem";
-            this.cellColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cellColorToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.cellColorToolStripMenuItem.Text = "&Cell_Color";
             this.cellColorToolStripMenuItem.Click += new System.EventHandler(this.cellColorToolStripMenuItem_Click);
             // 
@@ -325,7 +325,7 @@
             // 
             // graphicsPanel1
             // 
-            this.graphicsPanel1.BackColor = System.Drawing.Color.Black;
+            this.graphicsPanel1.BackColor = Properties.Settings.Default.Background;
             this.graphicsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graphicsPanel1.ForeColor = System.Drawing.Color.Black;
             this.graphicsPanel1.Location = new System.Drawing.Point(0, 49);
@@ -349,6 +349,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Myrick CGOL Submission";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

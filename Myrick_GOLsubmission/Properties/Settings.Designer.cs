@@ -25,13 +25,13 @@ namespace Myrick_GOLsubmission.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
-        public global::System.Drawing.Color BackColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("Transparent")]
+        public global::System.Drawing.Color OutlineColor {
             get {
-                return ((global::System.Drawing.Color)(this["BackColor"]));
+                return ((global::System.Drawing.Color)(this["OutlineColor"]));
             }
             set {
-                this["BackColor"] = value;
+                this["OutlineColor"] = value;
             }
         }
         
@@ -44,6 +44,27 @@ namespace Myrick_GOLsubmission.Properties {
             }
             set {
                 this["CellColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color Background {
+            get {
+                return ((global::System.Drawing.Color)(this["Background"]));
+            }
+            set {
+                this["Background"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Transparent")]
+        public global::System.Drawing.Color Clear {
+            get {
+                return ((global::System.Drawing.Color)(this["Clear"]));
             }
         }
     }

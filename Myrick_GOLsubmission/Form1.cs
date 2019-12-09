@@ -14,12 +14,12 @@ namespace Myrick_GOLsubmission
     //Main Form
     public partial class Form1 : Form
     {
-       static int rows = 100;
-       static int cols = 100;
+       static int rows = 50;
+       static int cols = 50;
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
-        Color gridColor = Properties.Settings.Default.BackColor;
+        Color gridColor = Properties.Settings.Default.OutlineColor;
         Color cellColor = Properties.Settings.Default.CellColor;
         // The Timer class
         Timer timer = new Timer();
@@ -109,6 +109,7 @@ namespace Myrick_GOLsubmission
         //Paint the cells
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
+            
             // Calculate the width and height of each cell in pixels
             // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
             float cellWidth = (1.0f * graphicsPanel1.ClientSize.Width) / (1.0f * universe.GetLength(0));
@@ -345,17 +346,17 @@ namespace Myrick_GOLsubmission
         private void backgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
-                dlg.Color = graphicsPanel1.BackColor;
+            dlg.Color = graphicsPanel1.BackColor;
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 graphicsPanel1.BackColor = dlg.Color;
-                gridColor = dlg.Color;
+                graphicsPanel1.Invalidate();
             }
         }
         //turn grid lines on/off
         private void showGridToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          if(showGridToolStripMenuItem.Checked)
+            if (showGridToolStripMenuItem.Checked)
             {
                 if (graphicsPanel1.BackColor == Color.Black)
                 {
@@ -366,10 +367,8 @@ namespace Myrick_GOLsubmission
                     gridColor = Color.Black;
                 }
             }
-            else
-            {
-                gridColor = graphicsPanel1.BackColor;
-            }
+            else { gridColor = Properties.Settings.Default.OutlineColor;}   
+
         }
         //save file
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -493,7 +492,7 @@ namespace Myrick_GOLsubmission
             dlg.Color = Properties.Settings.Default.CellColor;
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                Properties.Settings.Default.CellColor = dlg.Color;
+                
                 cellColor = dlg.Color;
                 graphicsPanel1.Invalidate();
             }
@@ -513,6 +512,14 @@ namespace Myrick_GOLsubmission
                 }
             }
             graphicsPanel1.Invalidate();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.Background = graphicsPanel1.BackColor;
+            Properties.Settings.Default.OutlineColor = Properties.Settings.Default.Clear;
+            Properties.Settings.Default.CellColor = cellColor;
+            Properties.Settings.Default.Save();
         }
     }
 }
