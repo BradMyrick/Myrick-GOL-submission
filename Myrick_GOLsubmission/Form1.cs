@@ -14,6 +14,7 @@ namespace Myrick_GOLsubmission
     //Main Form
     public partial class Form1 : Form
     {
+        int count = 0;
        static int rows = 50;
        static int cols = 50;
         // The universe array
@@ -59,7 +60,9 @@ namespace Myrick_GOLsubmission
             if ((row + 1 < myRows && col + 1 < myCols) && universe[row + 1, col + 1] == true)
                 count++;
 
+            
             return count;
+
         }
         //Calculate the next generation of cells
         private void NextGeneration()
@@ -67,14 +70,14 @@ namespace Myrick_GOLsubmission
             Form1 temp = new Form1();
             int myRows = rows;
             int myCols = cols;
-            
+            int count = 0;            
             bool[,] newGrid = new bool[myRows, myCols];
             for (float r = 0; r < universe.GetLength(0); r++)
             {
                 for (float c = 0; c < universe.GetLength(1); c++)
                 {
-                    int count = (int)CheckStatus((int)r,(int)c);
-
+                    count = (int)CheckStatus((int)r, (int)c);
+                   
 
                     if (universe[(int)r, (int)c])
                     {
@@ -99,10 +102,27 @@ namespace Myrick_GOLsubmission
 
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            
+
         }
+       
         //The event called by the timer every Interval milliseconds.
         private void Timer_Tick(object sender, EventArgs e)
         {
+            //loop to update # of alive cells
+            int alive = 0;
+            for (float y = 0; y < (1.0f * universe.GetLength(1)); y++)
+            {
+                for (float x = 0; x < (1.0f * universe.GetLength(1)); x++)
+                {
+                    if (universe[(int)x, (int)y] == true)
+                    {
+                        alive++;
+                        break;
+                    }
+                }
+            }
+            toolStripStatusLabel2.Text = "Alive Cells = " + alive;
             NextGeneration();
             graphicsPanel1.Invalidate();
         }
@@ -513,7 +533,7 @@ namespace Myrick_GOLsubmission
             }
             graphicsPanel1.Invalidate();
         }
-
+        //save settings on exit
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Properties.Settings.Default.Background = graphicsPanel1.BackColor;
@@ -521,5 +541,6 @@ namespace Myrick_GOLsubmission
             Properties.Settings.Default.CellColor = cellColor;
             Properties.Settings.Default.Save();
         }
+
     }
 }
