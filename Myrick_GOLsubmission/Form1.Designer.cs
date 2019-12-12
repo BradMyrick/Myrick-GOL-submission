@@ -60,8 +60,12 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.graphicsPanel1 = new Myrick_GOLsubmission.GraphicsPanel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.graphicsPanel1 = new Myrick_GOLsubmission.GraphicsPanel();
+            this.gridSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -194,7 +198,8 @@
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.backgroundColorToolStripMenuItem,
             this.showGridToolStripMenuItem,
-            this.cellColorToolStripMenuItem});
+            this.cellColorToolStripMenuItem,
+            this.gridSizeToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "&Settings";
@@ -202,7 +207,7 @@
             // backgroundColorToolStripMenuItem
             // 
             this.backgroundColorToolStripMenuItem.Name = "backgroundColorToolStripMenuItem";
-            this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.backgroundColorToolStripMenuItem.Text = "&Background_Color";
             this.backgroundColorToolStripMenuItem.Click += new System.EventHandler(this.backgroundColorToolStripMenuItem_Click);
             // 
@@ -210,7 +215,7 @@
             // 
             this.showGridToolStripMenuItem.CheckOnClick = true;
             this.showGridToolStripMenuItem.Name = "showGridToolStripMenuItem";
-            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.showGridToolStripMenuItem.Text = "&Show_Grid";
             this.showGridToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.Timer_Tick);
             this.showGridToolStripMenuItem.Click += new System.EventHandler(this.showGridToolStripMenuItem_Click);
@@ -218,7 +223,7 @@
             // cellColorToolStripMenuItem
             // 
             this.cellColorToolStripMenuItem.Name = "cellColorToolStripMenuItem";
-            this.cellColorToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.cellColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cellColorToolStripMenuItem.Text = "&Cell_Color";
             this.cellColorToolStripMenuItem.Click += new System.EventHandler(this.cellColorToolStripMenuItem_Click);
             // 
@@ -332,6 +337,12 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(61, 17);
+            this.toolStripStatusLabel2.Text = "Alive Cells";
+            // 
             // graphicsPanel1
             // 
             this.graphicsPanel1.BackColor = global::Myrick_GOLsubmission.Properties.Settings.Default.Background;
@@ -344,11 +355,37 @@
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
             // 
-            // toolStripStatusLabel2
+            // gridSizeToolStripMenuItem
             // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(61, 17);
-            this.toolStripStatusLabel2.Text = "Alive Cells";
+            this.gridSizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.gridSizeToolStripMenuItem.Name = "gridSizeToolStripMenuItem";
+            this.gridSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gridSizeToolStripMenuItem.Text = "&Grid_Size";
+            this.gridSizeToolStripMenuItem.Click += new System.EventHandler(this.gridSizeToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Text = "25*25";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Text = "50*50";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Text = "100*100";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // Form1
             // 
@@ -411,6 +448,10 @@
         private System.Windows.Forms.ToolStripMenuItem cellColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripMenuItem gridSizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }
 

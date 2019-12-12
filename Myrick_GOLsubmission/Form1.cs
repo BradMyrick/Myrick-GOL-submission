@@ -14,9 +14,9 @@ namespace Myrick_GOLsubmission
     //Main Form
     public partial class Form1 : Form
     {
-        int count = 0;
-       static int rows = 50;
-       static int cols = 50;
+        public static int rows = 50;
+        public static int cols = 50;
+
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
@@ -34,7 +34,6 @@ namespace Myrick_GOLsubmission
             timer.Interval = 100; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
-
         }
         //Count Neighbors 
         private float CheckStatus(int row, int col)
@@ -60,9 +59,7 @@ namespace Myrick_GOLsubmission
             if ((row + 1 < myRows && col + 1 < myCols) && universe[row + 1, col + 1] == true)
                 count++;
 
-            
             return count;
-
         }
         //Calculate the next generation of cells
         private void NextGeneration()
@@ -95,17 +92,11 @@ namespace Myrick_GOLsubmission
             }
             universe = newGrid;
             graphicsPanel1.Invalidate();
-
-
             // Increment generation count
             generations++;
-
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
-            
-
         }
-       
         //The event called by the timer every Interval milliseconds.
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -541,6 +532,41 @@ namespace Myrick_GOLsubmission
             Properties.Settings.Default.CellColor = cellColor;
             Properties.Settings.Default.Save();
         }
-
+        //change grid size
+        private void gridSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Form2 num = new Form2();
+            //num.Show();
+            
+        }
+        //repaint graphics panel from other forms
+        public void refresh()
+        {
+            graphicsPanel1.Invalidate();
+        }
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            rows = 25;
+            cols = 25;
+            bool[,] temp = new bool[rows, cols];
+            universe = temp;
+            graphicsPanel1.Invalidate();
+        }
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            rows = 50;
+            cols = 50;
+            bool[,] temp = new bool[rows, cols];
+            universe = temp;
+            graphicsPanel1.Invalidate();
+        }
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            rows = 100;
+            cols = 100;
+            bool[,] temp = new bool[rows, cols];
+            universe = temp;
+            graphicsPanel1.Invalidate();
+        }
     }
 }
