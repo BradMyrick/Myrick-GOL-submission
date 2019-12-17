@@ -14,9 +14,14 @@ namespace Myrick_GOLsubmission
     //Main Form
     public partial class Form1 : Form
     {
+<<<<<<< HEAD
+       static int rows = 50;
+       static int cols = 50;
+=======
         public static int rows = 50;
         public static int cols = 50;
 
+>>>>>>> 1d22e7beb94713bd6b615ea12741dc3abf69e94b
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
@@ -262,16 +267,22 @@ namespace Myrick_GOLsubmission
                     // Iterate through the current row one cell at a time.
                     for (int x = 0; x < universe.GetLength(0); x++)
                     {
-
-
                         // If the universe[x,y] is alive then append 'O' (capital O)
                         // to the row string.
-
+                        if (universe[x,y])
+                        {
+                            currentRow += 'O';
+                        }
                         // Else if the universe[x,y] is dead then append '.' (period)
                         // to the row string.
+                        else
+                        {
+                            currentRow += '.';
+                        }                                   
                     }
                     // Once the current row has been read through and the 
                     // string constructed then write it to the file using WriteLine.
+                    writer.WriteLine(currentRow);
                 }
                 // After all rows and columns have been written then close the file.
                 writer.Close();
@@ -301,52 +312,65 @@ namespace Myrick_GOLsubmission
 
                     // If the row begins with '!' then it is a comment
                     // and should be ignored.
-
+                    if (row.Contains('!'))
+                    {
+                        row.Skip(1);
+                    }
                     // If the row is not a comment then it is a row of cells.
                     // Increment the maxHeight variable for each row read.
-
+                    else
+                    {
+                        maxHeight++;
+                    }
                     // Get the length of the current row string
                     // and adjust the maxWidth variable if necessary.
+                    if (maxWidth < row.Length)
+                    {
+                        maxWidth = row.Length;
+                    }
                 }
-
-                // Resize the current universe and scratchPad
-                // to the width and height of the file calculated above.
-
-                // Reset the file pointer back to the beginning of the file.
+                int a = maxWidth;
+                int b = maxHeight;
+                bool[,] temp = new bool[a, b];
+                universe = temp;
                 reader.BaseStream.Seek(0, SeekOrigin.Begin);
-
                 // Iterate through the file again, this time reading in the cells.
                 while (!reader.EndOfStream)
                 {
+                   
                     // Read one row at a time.
                     string row = reader.ReadLine();
 
                     // If the row begins with '!' then
                     // it is a comment and should be ignored.
-
-                    // If the row is not a comment then 
-                    // it is a row of cells and needs to be iterated through.
-                    for (int xPos = 0; xPos < row.Length; xPos++)
+                    if (row.StartsWith("!"))
                     {
-                        /* if (row[xPos] == 'O') (capital O) then
+                        break;//do nothing
+                    }
+                    else
+                    {
+                        int y = 0;
+                        // If the row is not a comment then 
+                        // it is a row of cells and needs to be iterated through.
+                        for (int xPos = 0; xPos < row.Length; xPos++)
                         {
-                            cell = alive;
+                            // set the corresponding cell in the universe to alive
+                            if (row[xPos] == 'O')
+                            {
+                                universe[xPos,y] = true;
+                            }
+                            // set the rest to !alive
+                             else
+                            {
+                                universe[xPos,y] = !true;   
+                            }
                         }
-                        // set the corresponding cell in the universe to alive.
-
-                        // if (row[xPos] == '.') (period) then
-                        {
-                            cell = !alive;
-                        }
-                        set the corresponding cell in the universe to dead.
-                        */
                     }
                 }
-
                 // Close the file.
                 reader.Close();
+                graphicsPanel1.Invalidate();
             }
-
         }
         //file -> exit
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -384,7 +408,6 @@ namespace Myrick_GOLsubmission
         //save file
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = "All Files|*.*|Cells|*.cells";
             dlg.FilterIndex = 2; dlg.DefaultExt = "cells";
@@ -408,12 +431,20 @@ namespace Myrick_GOLsubmission
                     {
                         // If the universe[x,y] is alive then append 'O' (capital O)
                         // to the row string.
-
+                        if (universe[x, y])
+                        {
+                            currentRow += 'O';
+                        }
                         // Else if the universe[x,y] is dead then append '.' (period)
                         // to the row string.
+                        else
+                        {
+                            currentRow += '.';
+                        }
                     }
                     // Once the current row has been read through and the 
                     // string constructed then write it to the file using WriteLine.
+                    writer.WriteLine(currentRow);
                 }
                 // After all rows and columns have been written then close the file.
                 writer.Close();
@@ -532,6 +563,10 @@ namespace Myrick_GOLsubmission
             Properties.Settings.Default.CellColor = cellColor;
             Properties.Settings.Default.Save();
         }
+<<<<<<< HEAD
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+=======
         //change grid size
         private void gridSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -545,6 +580,7 @@ namespace Myrick_GOLsubmission
             graphicsPanel1.Invalidate();
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
+>>>>>>> 1d22e7beb94713bd6b615ea12741dc3abf69e94b
         {
             rows = 25;
             cols = 25;
@@ -552,7 +588,12 @@ namespace Myrick_GOLsubmission
             universe = temp;
             graphicsPanel1.Invalidate();
         }
+<<<<<<< HEAD
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+=======
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
+>>>>>>> 1d22e7beb94713bd6b615ea12741dc3abf69e94b
         {
             rows = 50;
             cols = 50;
@@ -560,7 +601,12 @@ namespace Myrick_GOLsubmission
             universe = temp;
             graphicsPanel1.Invalidate();
         }
+<<<<<<< HEAD
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+=======
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
+>>>>>>> 1d22e7beb94713bd6b615ea12741dc3abf69e94b
         {
             rows = 100;
             cols = 100;
