@@ -14,8 +14,9 @@ namespace Myrick_GOLsubmission
     //Main Form
     public partial class Form1 : Form
     {
-       static int rows = 50;
-       static int cols = 50;
+        
+        static int rows = 50;
+        static int cols = 50;
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
@@ -28,11 +29,12 @@ namespace Myrick_GOLsubmission
         //Form Constructor
         public Form1()
         {
+            
             InitializeComponent();
             // Setup the timer
             timer.Interval = 100; // milliseconds
             timer.Tick += Timer_Tick;
-            timer.Enabled = false; // start timer running
+            timer.Enabled = false;
         }
         //Count Neighbors 
         private float CheckStatus(int row, int col)
@@ -307,7 +309,7 @@ namespace Myrick_GOLsubmission
                     // and should be ignored.
                     if (row.Contains('!'))
                     {
-                        row.Skip(row.Length);//
+                        continue;//
                     }
                     // If the row is not a comment then it is a row of cells.
                     // Increment the maxHeight variable for each row read.
@@ -453,12 +455,9 @@ namespace Myrick_GOLsubmission
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 StreamReader reader = new StreamReader(dlg.FileName);
-
-                // Create a couple variables to calculate the width and height
-                // of the data in the file.
+                //variables to calculate the width and height of the data in the file.
                 int maxWidth = 0;
                 int maxHeight = 0;
-
                 // Iterate through the file once to get its size.
                 while (!reader.EndOfStream)
                 {
@@ -469,7 +468,7 @@ namespace Myrick_GOLsubmission
                     // and should be ignored.
                     if (row.Contains('!'))
                     {
-                        row.Skip(row.Length);
+                        continue;
                     }
                     // If the row is not a comment then it is a row of cells.
                     // Increment the maxHeight variable for each row read.
@@ -479,7 +478,7 @@ namespace Myrick_GOLsubmission
                     }
                     // Get the length of the current row string
                     // and adjust the maxWidth variable if necessary.
-                    if (maxWidth < row.Length)
+                    if (maxWidth <= row.Length)
                     {
                         maxWidth = row.Length;
                     }
@@ -589,6 +588,26 @@ namespace Myrick_GOLsubmission
             bool[,] temp = new bool[rows, cols];
             universe = temp;
             graphicsPanel1.Invalidate();
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            timer.Interval = 400;
+        }
+
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            timer.Interval = 300;
+        }
+
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            timer.Interval = 200;
+        }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            timer.Interval = 100;
         }
     }
 }
