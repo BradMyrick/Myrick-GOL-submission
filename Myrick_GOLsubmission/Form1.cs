@@ -14,7 +14,6 @@ namespace Myrick_GOLsubmission
     //Main Form
     public partial class Form1 : Form
     {
-        
         static int rows = 50;
         static int cols = 50;
         // The universe array
@@ -563,7 +562,7 @@ namespace Myrick_GOLsubmission
             Properties.Settings.Default.CellColor = cellColor;
             Properties.Settings.Default.Save();
         }
-
+        //25*25 grid
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             rows = 25;
@@ -572,7 +571,7 @@ namespace Myrick_GOLsubmission
             universe = temp;
             graphicsPanel1.Invalidate();
         }
-
+        //50*50 grid
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
             rows = 50;
@@ -581,6 +580,7 @@ namespace Myrick_GOLsubmission
             universe = temp;
             graphicsPanel1.Invalidate();
         }
+        //100*100 grid
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
             rows = 100;
@@ -589,25 +589,69 @@ namespace Myrick_GOLsubmission
             universe = temp;
             graphicsPanel1.Invalidate();
         }
-
+        // 25% time
         private void toolStripMenuItem5_Click(object sender, EventArgs e)
         {
             timer.Interval = 400;
         }
-
+        // 50% time
         private void toolStripMenuItem6_Click(object sender, EventArgs e)
         {
             timer.Interval = 300;
         }
-
+        // 75% time
         private void toolStripMenuItem7_Click(object sender, EventArgs e)
         {
             timer.Interval = 200;
         }
-
+        // 100% time
         private void toolStripMenuItem8_Click(object sender, EventArgs e)
         {
             timer.Interval = 100;
+        }
+        //contextual show grid
+        private void showGridToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (showGridToolStripMenuItem.Checked)
+            {
+                if (graphicsPanel1.BackColor == Color.Black)
+                {
+                    gridColor = Color.White;
+                }
+                else
+                {
+                    gridColor = Color.Black;
+                }
+            }
+            else { gridColor = Properties.Settings.Default.OutlineColor; }
+        }
+        //contextual background color
+        private void backgroundColorToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ColorDialog dlg = new ColorDialog();
+            dlg.Color = graphicsPanel1.BackColor;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                graphicsPanel1.BackColor = dlg.Color;
+                graphicsPanel1.Invalidate();
+            }
+        }
+        //contextual alive cell color
+        private void cellColorToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ColorDialog dlg = new ColorDialog();
+            dlg.Color = Properties.Settings.Default.CellColor;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+
+                cellColor = dlg.Color;
+                graphicsPanel1.Invalidate();
+            }
+        }
+        //contextual Exit Program
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
