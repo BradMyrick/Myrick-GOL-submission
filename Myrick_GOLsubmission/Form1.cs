@@ -14,14 +14,8 @@ namespace Myrick_GOLsubmission
     //Main Form
     public partial class Form1 : Form
     {
-<<<<<<< HEAD
        static int rows = 50;
        static int cols = 50;
-=======
-        public static int rows = 50;
-        public static int cols = 50;
-
->>>>>>> 1d22e7beb94713bd6b615ea12741dc3abf69e94b
         // The universe array
         bool[,] universe = new bool[rows, cols];
         // Drawing colors
@@ -563,24 +557,8 @@ namespace Myrick_GOLsubmission
             Properties.Settings.Default.CellColor = cellColor;
             Properties.Settings.Default.Save();
         }
-<<<<<<< HEAD
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
-=======
-        //change grid size
-        private void gridSizeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Form2 num = new Form2();
-            //num.Show();
-            
-        }
-        //repaint graphics panel from other forms
-        public void refresh()
-        {
-            graphicsPanel1.Invalidate();
-        }
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
->>>>>>> 1d22e7beb94713bd6b615ea12741dc3abf69e94b
         {
             rows = 25;
             cols = 25;
@@ -588,12 +566,8 @@ namespace Myrick_GOLsubmission
             universe = temp;
             graphicsPanel1.Invalidate();
         }
-<<<<<<< HEAD
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
-=======
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
->>>>>>> 1d22e7beb94713bd6b615ea12741dc3abf69e94b
         {
             rows = 50;
             cols = 50;
@@ -601,12 +575,8 @@ namespace Myrick_GOLsubmission
             universe = temp;
             graphicsPanel1.Invalidate();
         }
-<<<<<<< HEAD
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
-=======
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
->>>>>>> 1d22e7beb94713bd6b615ea12741dc3abf69e94b
         {
             rows = 100;
             cols = 100;
