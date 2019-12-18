@@ -303,12 +303,11 @@ namespace Myrick_GOLsubmission
                 {
                     // Read one row at a time.
                     string row = reader.ReadLine();
-
                     // If the row begins with '!' then it is a comment
                     // and should be ignored.
                     if (row.Contains('!'))
                     {
-                        row.Skip(1);
+                        row.Skip(row.Length);//
                     }
                     // If the row is not a comment then it is a row of cells.
                     // Increment the maxHeight variable for each row read.
@@ -470,7 +469,7 @@ namespace Myrick_GOLsubmission
                     // and should be ignored.
                     if (row.Contains('!'))
                     {
-                        row.Skip(1);
+                        row.Skip(row.Length);
                     }
                     // If the row is not a comment then it is a row of cells.
                     // Increment the maxHeight variable for each row read.
