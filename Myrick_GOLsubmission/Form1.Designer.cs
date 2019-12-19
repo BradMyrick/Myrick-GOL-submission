@@ -70,15 +70,19 @@
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.graphicsPanel1 = new Myrick_GOLsubmission.GraphicsPanel();
-            this.showGridToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.backgroundColorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cellColorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Options = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showGridToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundColorToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.cellColorToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showGridToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundColorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cellColorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.lifeLexiconPatternsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gasperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.r2D2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ringOfFireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.graphicsPanel1 = new Myrick_GOLsubmission.GraphicsPanel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -167,7 +171,8 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customizeToolStripMenuItem});
+            this.customizeToolStripMenuItem,
+            this.lifeLexiconPatternsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -175,7 +180,7 @@
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.customizeToolStripMenuItem.Text = "&Randomize";
             this.customizeToolStripMenuItem.Click += new System.EventHandler(this.customizeToolStripMenuItem_Click);
             // 
@@ -419,18 +424,46 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(61, 17);
             this.toolStripStatusLabel2.Text = "Alive Cells";
             // 
-            // graphicsPanel1
+            // Options
             // 
-            this.graphicsPanel1.BackColor = global::Myrick_GOLsubmission.Properties.Settings.Default.Background;
-            this.graphicsPanel1.ContextMenuStrip = this.Options;
-            this.graphicsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphicsPanel1.ForeColor = System.Drawing.Color.Black;
-            this.graphicsPanel1.Location = new System.Drawing.Point(0, 49);
-            this.graphicsPanel1.Name = "graphicsPanel1";
-            this.graphicsPanel1.Size = new System.Drawing.Size(995, 468);
-            this.graphicsPanel1.TabIndex = 3;
-            this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
-            this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
+            this.Options.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showGridToolStripMenuItem2,
+            this.backgroundColorToolStripMenuItem2,
+            this.cellColorToolStripMenuItem2,
+            this.closeToolStripMenuItem});
+            this.Options.Name = "contextMenuStrip1";
+            this.Options.Size = new System.Drawing.Size(173, 92);
+            this.Options.Click += new System.EventHandler(this.showGridToolStripMenuItem2_Click);
+            // 
+            // showGridToolStripMenuItem2
+            // 
+            this.showGridToolStripMenuItem2.CheckOnClick = true;
+            this.showGridToolStripMenuItem2.Name = "showGridToolStripMenuItem2";
+            this.showGridToolStripMenuItem2.Size = new System.Drawing.Size(172, 22);
+            this.showGridToolStripMenuItem2.Text = "&Show_Grid";
+            this.showGridToolStripMenuItem2.CheckStateChanged += new System.EventHandler(this.Timer_Tick);
+            this.showGridToolStripMenuItem2.Click += new System.EventHandler(this.showGridToolStripMenuItem2_Click);
+            // 
+            // backgroundColorToolStripMenuItem2
+            // 
+            this.backgroundColorToolStripMenuItem2.Name = "backgroundColorToolStripMenuItem2";
+            this.backgroundColorToolStripMenuItem2.Size = new System.Drawing.Size(172, 22);
+            this.backgroundColorToolStripMenuItem2.Text = "&Background_Color";
+            this.backgroundColorToolStripMenuItem2.Click += new System.EventHandler(this.backgroundColorToolStripMenuItem2_Click);
+            // 
+            // cellColorToolStripMenuItem2
+            // 
+            this.cellColorToolStripMenuItem2.Name = "cellColorToolStripMenuItem2";
+            this.cellColorToolStripMenuItem2.Size = new System.Drawing.Size(172, 22);
+            this.cellColorToolStripMenuItem2.Text = "&Cell_Color";
+            this.cellColorToolStripMenuItem2.Click += new System.EventHandler(this.cellColorToolStripMenuItem2_Click);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.closeToolStripMenuItem.Text = "&Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // showGridToolStripMenuItem1
             // 
@@ -447,46 +480,49 @@
             this.cellColorToolStripMenuItem1.Name = "cellColorToolStripMenuItem1";
             this.cellColorToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
             // 
-            // Options
+            // lifeLexiconPatternsToolStripMenuItem
             // 
-            this.Options.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showGridToolStripMenuItem2,
-            this.backgroundColorToolStripMenuItem2,
-            this.cellColorToolStripMenuItem2,
-            this.closeToolStripMenuItem});
-            this.Options.Name = "contextMenuStrip1";
-            this.Options.Size = new System.Drawing.Size(181, 114);
-            this.Options.Click += new System.EventHandler(this.showGridToolStripMenuItem2_Click);
+            this.lifeLexiconPatternsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gasperToolStripMenuItem,
+            this.r2D2ToolStripMenuItem,
+            this.ringOfFireToolStripMenuItem});
+            this.lifeLexiconPatternsToolStripMenuItem.Name = "lifeLexiconPatternsToolStripMenuItem";
+            this.lifeLexiconPatternsToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.lifeLexiconPatternsToolStripMenuItem.Text = "&Life_Lexicon_Patterns";
             // 
-            // showGridToolStripMenuItem2
+            // gasperToolStripMenuItem
             // 
-            this.showGridToolStripMenuItem2.CheckOnClick = true;
-            this.showGridToolStripMenuItem2.Name = "showGridToolStripMenuItem2";
-            this.showGridToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.showGridToolStripMenuItem2.Text = "&Show_Grid";
-            this.showGridToolStripMenuItem2.CheckStateChanged += new System.EventHandler(this.Timer_Tick);
-            this.showGridToolStripMenuItem2.Click += new System.EventHandler(this.showGridToolStripMenuItem2_Click);
+            this.gasperToolStripMenuItem.Name = "gasperToolStripMenuItem";
+            this.gasperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gasperToolStripMenuItem.Text = "&Gosper_Glider_Gun";
+            this.gasperToolStripMenuItem.Click += new System.EventHandler(this.gasperToolStripMenuItem_Click);
             // 
-            // backgroundColorToolStripMenuItem2
+            // r2D2ToolStripMenuItem
             // 
-            this.backgroundColorToolStripMenuItem2.Name = "backgroundColorToolStripMenuItem2";
-            this.backgroundColorToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.backgroundColorToolStripMenuItem2.Text = "&Background_Color";
-            this.backgroundColorToolStripMenuItem2.Click += new System.EventHandler(this.backgroundColorToolStripMenuItem2_Click);
+            this.r2D2ToolStripMenuItem.Name = "r2D2ToolStripMenuItem";
+            this.r2D2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.r2D2ToolStripMenuItem.Text = "&R2D2";
+            this.r2D2ToolStripMenuItem.Click += new System.EventHandler(this.r2D2ToolStripMenuItem_Click);
             // 
-            // cellColorToolStripMenuItem2
+            // ringOfFireToolStripMenuItem
             // 
-            this.cellColorToolStripMenuItem2.Name = "cellColorToolStripMenuItem2";
-            this.cellColorToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.cellColorToolStripMenuItem2.Text = "&Cell_Color";
-            this.cellColorToolStripMenuItem2.Click += new System.EventHandler(this.cellColorToolStripMenuItem2_Click);
+            this.ringOfFireToolStripMenuItem.Name = "ringOfFireToolStripMenuItem";
+            this.ringOfFireToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ringOfFireToolStripMenuItem.Text = "&Ring_Of_Fire";
+            this.ringOfFireToolStripMenuItem.Click += new System.EventHandler(this.ringOfFireToolStripMenuItem_Click);
             // 
-            // closeToolStripMenuItem
+            // graphicsPanel1
             // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.closeToolStripMenuItem.Text = "&Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            this.graphicsPanel1.BackColor = global::Myrick_GOLsubmission.Properties.Settings.Default.Background;
+            this.graphicsPanel1.ContextMenuStrip = this.Options;
+            this.graphicsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphicsPanel1.ForeColor = System.Drawing.Color.Black;
+            this.graphicsPanel1.Location = new System.Drawing.Point(0, 49);
+            this.graphicsPanel1.Name = "graphicsPanel1";
+            this.graphicsPanel1.Size = new System.Drawing.Size(995, 468);
+            this.graphicsPanel1.TabIndex = 3;
+            this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
+            this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
             // 
             // Form1
             // 
@@ -566,6 +602,10 @@
         private System.Windows.Forms.ToolStripMenuItem backgroundColorToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem cellColorToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lifeLexiconPatternsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gasperToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem r2D2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ringOfFireToolStripMenuItem;
     }
 }
 

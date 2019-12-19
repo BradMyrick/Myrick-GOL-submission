@@ -84,12 +84,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\App.config" />
+    <EmbeddedResource Include="Resources\Gosper_glider_gun.cells" />
     <None Include="Resources\PlayVideo_16x_32.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Pause_16x_32.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\R2D2.cells" />
+    <None Include="Resources\ring_of_fire.cells" />
     <None Include="Resources\Step_16x_32.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Myrick_GOLsubmission
 {
@@ -642,6 +643,54 @@ namespace Myrick_GOLsubmission
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        //Life Lexicon Glider Gun
+        private void gasperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Assembly _assembly;
+            StreamReader _textStreamReader;
+
+            try
+            {
+                _assembly = Assembly.GetExecutingAssembly();
+                _textStreamReader = new StreamReader(_assembly.GetManifestResourceStream("Myrick_GOLsubmission.Gosper_glider_gun.cells"));
+            }
+            catch
+            {
+                MessageBox.Show("Error accessing resources!");
+            }
+        }
+        //Life Lexicon R2D2
+        private void r2D2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Assembly _assembly;
+            StreamReader _textStreamReader;
+
+            try
+            {
+                _assembly = Assembly.GetExecutingAssembly();
+                _textStreamReader = new StreamReader(_assembly.GetManifestResourceStream("Myrick_GOLsubmission.R2D2.cells"));
+            }
+            catch
+            {
+                MessageBox.Show("Error accessing resources!");
+            }
+        }
+        //Life Lexicon ring of fire
+        private void ringOfFireToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Assembly _assembly;
+            StreamReader _textStreamReader;
+
+            try
+            {
+                _assembly = Assembly.GetExecutingAssembly();
+                _textStreamReader = new StreamReader(_assembly.GetManifestResourceStream("Myrick_GOLsubmission.ring_of_fire.cells"));
+            }
+            catch
+            {
+                MessageBox.Show("Error accessing resources!");
+            }
         }
     }
 }
