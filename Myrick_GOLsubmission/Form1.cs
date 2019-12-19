@@ -249,11 +249,7 @@ namespace Myrick_GOLsubmission
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 StreamWriter writer = new StreamWriter(dlg.FileName);
-                //Write any comments you want to include first.
-                // Prefix all comment strings with an exclamation point.
-                // Use WriteLine to write the strings to the file.
-                // It appends a CRLF for you.
-                writer.WriteLine("!This is my comment.");
+               // writer.WriteLine("!This is my comment.");
                 // Iterate through the universe one row at a time.
                 for (int y = 0; y < universe.GetLength(1); y++)
                 {
@@ -306,16 +302,16 @@ namespace Myrick_GOLsubmission
                     string row = reader.ReadLine();
                     // If the row begins with '!' then it is a comment
                     // and should be ignored.
-                    if (row.Contains('!'))
-                    {
-                        continue;//
-                    }
+                    //if (row.Contains('!'))
+                    //{
+                    //    continue;//
+                    //}
                     // If the row is not a comment then it is a row of cells.
                     // Increment the maxHeight variable for each row read.
-                    else
-                    {
+                    //else
+                    //{
                         maxHeight++;
-                    }
+                    //}
                     // Get the length of the current row string
                     // and adjust the maxWidth variable if necessary.
                     if (maxWidth < row.Length)
@@ -331,18 +327,16 @@ namespace Myrick_GOLsubmission
                 // Iterate through the file again, this time reading in the cells.
                 while (!reader.EndOfStream)
                 {
-                   
                     // Read one row at a time.
                     string row = reader.ReadLine();
-
                     // If the row begins with '!' then
                     // it is a comment and should be ignored.
-                    if (row.StartsWith("!"))
-                    {
-                        break;//do nothing
-                    }
-                    else
-                    {
+                    //if (row.StartsWith("!"))
+                    //{
+                    //    break;//do nothing
+                    //}
+                    //else
+                    //{
                         int y = 0;
                         // If the row is not a comment then 
                         // it is a row of cells and needs to be iterated through.
@@ -359,7 +353,7 @@ namespace Myrick_GOLsubmission
                                 universe[xPos,y] = !true;   
                             }
                         }
-                    }
+                    //}
                 }
                 // Close the file.
                 reader.Close();
@@ -410,11 +404,7 @@ namespace Myrick_GOLsubmission
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 StreamWriter writer = new StreamWriter(dlg.FileName);
-                //Write any comments you want to include first.
-                // Prefix all comment strings with an exclamation point.
-                // Use WriteLine to write the strings to the file.
-                // It appends a CRLF for you.
-                writer.WriteLine("!This is my comment.");
+               // writer.WriteLine("!This is my comment.");
                 // Iterate through the universe one row at a time.
                 for (int y = 0; y < universe.GetLength(1); y++)
                 {
@@ -465,16 +455,16 @@ namespace Myrick_GOLsubmission
 
                     // If the row begins with '!' then it is a comment
                     // and should be ignored.
-                    if (row.Contains('!'))
-                    {
-                        continue;
-                    }
+                    //if (row.Contains('!'))
+                    //{
+                    //    continue;
+                    //}
                     // If the row is not a comment then it is a row of cells.
                     // Increment the maxHeight variable for each row read.
-                    else
-                    {
+                    //else
+                    //{
                         maxHeight++;
-                    }
+                    //}
                     // Get the length of the current row string
                     // and adjust the maxWidth variable if necessary.
                     if (maxWidth <= row.Length)
@@ -496,12 +486,12 @@ namespace Myrick_GOLsubmission
 
                     // If the row begins with '!' then
                     // it is a comment and should be ignored.
-                    if (row.StartsWith("!"))
-                    {
-                        break;//do nothing
-                    }
-                    else
-                    {
+                    //if (row.StartsWith("!"))
+                    //{
+                    //    break;//do nothing
+                    //}
+                    //else
+                    //{
                         int y = 0;
                         // If the row is not a comment then 
                         // it is a row of cells and needs to be iterated through.
@@ -518,7 +508,7 @@ namespace Myrick_GOLsubmission
                                 universe[xPos, y] = !true;
                             }
                         }
-                    }
+                    //}
                 }
                 // Close the file.
                 reader.Close();
