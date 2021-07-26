@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\App.config" />
-    <EmbeddedResource Include="Resources\Gosper_glider_gun.cells" />
+    <None Include="Resources\ggg.cells" />
     <None Include="Resources\PlayVideo_16x_32.bmp" />
   </ItemGroup>
   <ItemGroup>
